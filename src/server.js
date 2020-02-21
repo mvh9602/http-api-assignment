@@ -1,5 +1,5 @@
 const http = require('http');
-const url = require('url'); 
+const url = require('url');
 const query = require('querystring');
 
 const htmlHandler = require('./htmlResponses.js');
@@ -12,10 +12,10 @@ const urlStruct = {
   '/style.css': htmlHandler.getCss,
   '/success': dataHandler.success,
   '/badRequest': dataHandler.badRequest,
-    '/unauthorized': dataHandler.unauthorized,
-    '/forbidden': dataHandler.forbidden,
-    '/internal': dataHandler.internal,
-    '/notImplemented': dataHandler.notImplemented,
+  '/unauthorized': dataHandler.unauthorized,
+  '/forbidden': dataHandler.forbidden,
+  '/internal': dataHandler.internal,
+  '/notImplemented': dataHandler.notImplemented,
   notFound: dataHandler.notFound,
 };
 
@@ -23,8 +23,8 @@ const onRequest = (request, response) => {
   const parsedUrl = url.parse(request.url);
 
   const params = query.parse(parsedUrl.query);
-    
-  const type = request.headers.accept.split(",");
+
+  const type = request.headers.accept.split(',');
 
   if (urlStruct[parsedUrl.pathname]) {
     urlStruct[parsedUrl.pathname](request, response, type, params);
